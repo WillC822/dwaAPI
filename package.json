@@ -1,0 +1,12 @@
+{
+  "name": "dwaapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "\"running\"",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
