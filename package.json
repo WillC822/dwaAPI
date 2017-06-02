@@ -5,8 +5,12 @@
   "main": "src/server.js",
   "scripts": {
     "test": "\"running\"",
-    "start": "node server.js"
+    "start": "node src/server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3"
+  }
 }
