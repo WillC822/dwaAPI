@@ -3,7 +3,7 @@ var bodyparser = require('body-parser'); //load bodyparser module set's as a var
 var app = express();                     //instantiate express as var
 
 
-app.use('/api/v1/url', require('../routes/urlshortener.js')(express)); //sets the base of the url
+app.use('/api', require('../routes/urlshortener.js')(express)); //sets the base of the url
 
 var port = 3000; //load port 3000 as var
 
