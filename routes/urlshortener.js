@@ -1,15 +1,27 @@
+module.exports = (express) => {
 //create module to house url string variable/constant that contains alphanumeric set
-const express = require('express');
-exports.genURL = (urlLength) => {
- var urlString = '';
- const alphaNumeric='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+var router = express.Router();
+var path = require("path");
 
-//start loop
-//randomly generate urlLength characters
-//end loop
-for(var genLoopIndex = 0; genLoopIndex <urlLength; genLoopIndex++){
+  router.post('/v1/url', (req,res) => {
+    var urlString = '';
+    const alphaNumeric='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-  urlString += alphaNumeric.charAt(Math.random() * (alphaNumeric.length))
-}
-  return urlString
-}
+   //start loop
+   //randomly generate urlLength characters
+   //end loop
+   for(var genLoopIndex = 0; genLoopIndex <urlLength; genLoopIndex++){
+
+     urlString += alphaNumeric.charAt(Math.random() * (alphaNumeric.length))
+   }
+     return urlString
+     res.json({urlString});
+  });
+
+
+  router.get('v1/url', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/views/index.html'));
+  });
+
+return router;
+};
