@@ -3,11 +3,17 @@ const bodyparser = require('body-parser'); //load bodyparser module set's as a v
 const app = express();                     //instantiate express as var
 
 const port = process.env.PORT || 3000; //load port 3000 as var
+require('dotenv').config();
 
 app.use('/api', require('../routes/urlshortener.js')(express)); //sets the base of the url
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true,
+}));
+
 exports.server = app.listen(port, () => {              //listens to server and prints to terminal
-  console.log('Our server is running on Port', port);
+  console.log('Our server is running on Port', + port);
 });
 
 
