@@ -1,60 +1,53 @@
-const url = require('../../models/urlShort');
-const path = require('path');
-const urlGen = require('../src/urlRand')
+const url = require ('../models/urlShort');
+const path = require ('path');
 
-mosule.exports = (express) => {
+module.exports = (express) => {
   const router = express.Router();
 
-  //allows home page to load
+  //Create
   router.post('url', (req,res) => {
-    url.create(new, (err) => {
-      res.status(500).json(err);
-    }, (data) => {
-      res.status(200).json(data);
-  });
-});
-  //loads default page
-  router.get('url', (req,res) => {
-    res.sendFile(path.join(__dirname, '/views/index.html'));
+    url.create(req.body, (err) => {
+            res.status(500).json(err);
+        }, (data) => {
+            res.status(200).json(data);
+        })
+    });
+  //Read All
+  router.get('/url', (req, res) => {
+      user.findAll( (err) => {
+          res.status(500).json(err);
+      }, (data) => {
+          res.status(200).json(data);
+      })
   });
 
-  //allows id to return specicic info
-  router.get('/url/:id', (req, res) =>{
-    const reqParam = req;
-    url.find(req,body, (err) => {
-      res.status(500).json(err);
-    }, (data) => {
-      res.status(200).json(data);
-    });
+  //Read One(find only one user)
+  router.get('/url/:id', (req, res) => {
+      req.body.id = req.params.id;
+      user.findAll(req.body, (err) => {
+          res.status(500).json(err);
+      }, (data) => {
+          res.status(200).json(data);
+      })
   });
 
-  //alloes access to update route
-  router.post('/url/:id', (req, res) =>{
-    const reqParam = req;
-    url.update(req,body, (err) => {
-      res.status(500).json(err);
-    }, (data) => {
-      res.status(200).json(data);
-    });
+  //Update
+  router.post('/url/:id', (req, res) => {
+      req.body.id = req.params.id;
+      user.update(req.body, (err) => {
+          res.status(500).json(err);
+      }, (data) => {
+          res.status(200).json(data);
+      })
   });
 
-  //alloes access to delete route
-  router.delete('/url/:id', (req, res) =>{
-    const reqParam = req;
-    url.destroy(req,body, (err) => {
-      res.status(500).json(err);
-    }, (data) => {
-      res.status(200).json(data);
-    });
+  //Destroy(find only one user)
+  router.delete('/url/:id', (req, res) => {
+      req.body.id = req.params.id;
+      user.destroy(req.body, (err) => {
+          res.status(500).json(err);
+      }, (data) => {
+          res.status(200).json(data);
+      });
   });
-
-  router.get('/url/:id', (req, res) =>{
-    const reqParam = req;
-    url.find(req,body, (err) => {
-      res.status(500).json(err);
-    }, (data) => {
-      res.status(200).json(data);
-    });
-  });
-  return router;
-};
+}

@@ -1,15 +1,15 @@
-const db = require('.db');
+const db = require('/db');
 
 //create
 exports.create =  (payload,err,success) => {
   db.url.create(payload).then(success).catch(err);
-}
+};
 
 
 //find all
 exports.findall =  (err,success) => {
   db.url.findall().then(success).catch(err);
-}
+};
 
 //find a specific id
 exports.find =  (payload,err,success) => {
@@ -18,24 +18,25 @@ exports.find =  (payload,err,success) => {
       id: urlID,
     },
     //find all relations in sequelize
-    include [{
+    include:[{
       all:true,
       nested: true,
     }],
   }).then(success).catch(err);
-}
+};
 
 //update
-exports.update =  (payload,err,success) => {
-  db.url.update({
-    where: {
-      id: urlID,
-    },
-    //find all relations in sequelize
-  )}.then ( (existingData) => {
-    existingData.updateAttributes(payload).then(success).catch(err);
-  }).catch(err);
-}
+
+
+exports.update = ( payload, err, success) => {
+    db.url.find({
+        where:{
+            id: urlID,
+        },
+
+    }).then(function (existingData){
+        existingData.updateAttributes(payload).then(success).catch(err)
+}).catch(err);
 
 //destroy
 exports.destroy =  (payload,err,success) => {
@@ -44,4 +45,4 @@ exports.destroy =  (payload,err,success) => {
       id: urlID,
     },
   }).then(success).catch(err);
-}
+};
